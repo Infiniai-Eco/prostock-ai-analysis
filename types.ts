@@ -1,3 +1,4 @@
+
 export enum MarketType {
   A_SHARE = 'A_SHARE',
   HK_SHARE = 'HK_SHARE',
@@ -21,10 +22,21 @@ export enum AnalystType {
   INSTITUTIONAL = 'INSTITUTIONAL' // New Analyst
 }
 
+// New: App Operation Mode
+export enum AppMode {
+  ANALYSIS = 'ANALYSIS', // Standard Stock Analysis
+  SCREENER = 'SCREENER', // Reverse Stock Selection
+}
+
 export interface StockConfig {
   stockCode: string;
   marketType: MarketType;
   date: string;
+}
+
+export interface ScreenerConfig {
+  sector: string; // e.g., "AI", "EV", "Consumer"
+  style: string;  // e.g., "Undervalued", "Growth", "Dividend"
 }
 
 export interface AnalysisConfig {
@@ -37,9 +49,13 @@ export interface AnalysisConfig {
 }
 
 export interface AppState {
+  mode: AppMode; // Added mode
   stock: StockConfig;
+  screener: ScreenerConfig; // Added screener config
   analysis: AnalysisConfig;
   isAnalyzing: boolean;
+  isAutoRefresh: boolean; // Added auto-refresh state
   result: string;
   error: string | null;
+  apiKey: string;
 }

@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AnalysisConfig } from '../types';
-import { Settings, Cpu } from 'lucide-react';
+import { Settings, Cpu, Key } from 'lucide-react';
 
 interface SidebarProps {
   config: AnalysisConfig;
+  apiKey: string;
+  onApiKeyChange: (key: string) => void;
   onChange: (newConfig: AnalysisConfig) => void;
 }
 
-export const Sidebar: React.FC<SidebarProps> = ({ config, onChange }) => {
+export const Sidebar: React.FC<SidebarProps> = ({ config, apiKey, onApiKeyChange, onChange }) => {
+  const [showKeyInput, setShowKeyInput] = useState(false);
+
   const updateConfig = (key: keyof AnalysisConfig, value: any) => {
     onChange({ ...config, [key]: value });
   };
@@ -27,6 +31,33 @@ export const Sidebar: React.FC<SidebarProps> = ({ config, onChange }) => {
 
       <div className="bg-white rounded-b-xl shadow-sm border border-gray-100 p-5 space-y-8 -mt-4">
         
+        {/* API Key Configuration */}
+        <div className="space-y-3 pb-4 border-b border-gray-100">
+           <div 
+             className="flex items-center gap-2 text-gray-700 font-medium cursor-pointer hover:text-brand-600"
+             onClick={() => setShowKeyInput(!showKeyInput)}
+           >
+            <Key className="w-4 h-4" />
+            <h3>API Key 设置</h3>
+            <span className="text-xs text-gray-400 font-normal ml-auto">{apiKey ? '已配置' : '未配置'}</span>
+          </div>
+          
+          {(showKeyInput || !apiKey) && (
+            <div className="space-y-2 animate-fade-in">
+              <input 
+                type="password"
+                value={apiKey}
+                onChange={(e) => onApiKeyChange(e.target.value)}
+                placeholder="在此输入 Gemini API Key"
+                className="w-full text-sm border border-gray-200 rounded-lg p-2.5 bg-gray-50 text-gray-700 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none"
+              />
+              <p className="text-[10px] text-gray-400 leading-tight">
+                * 您的 Key 仅存储在本地浏览器中，用于在线访问服务。
+              </p>
+            </div>
+          )}
+        </div>
+
         {/* Model Selection */}
         <div className="space-y-4">
           <div className="flex items-center gap-2 text-gray-700 font-medium">

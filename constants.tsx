@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { AnalysisLevel, AnalystType, MarketType } from './types';
 import { 
@@ -23,6 +24,53 @@ export const MARKET_OPTIONS = [
   { value: MarketType.A_SHARE, label: '🇨🇳 A股市场' },
   { value: MarketType.HK_SHARE, label: '🇭🇰 港股市场' },
   { value: MarketType.US_SHARE, label: '🇺🇸 美股市场' },
+];
+
+export const SECTOR_OPTIONS = [
+  { value: 'All_Market', label: '🌍 全市场 (不限板块)' },
+  { value: 'AI_Computing', label: '🤖 人工智能/算力/光模块' },
+  { value: 'New_Energy_EV', label: '⚡ 新能源/固态电池/光伏' },
+  { value: 'Semiconductor', label: '💾 半导体/芯片/国产替代' },
+  { value: 'Low_Altitude', label: '🚁 低空经济/飞行汽车' },
+  { value: 'High_Dividend', label: '🛡️ 煤炭/银行/电力 (高股息)' },
+  { value: 'Consumer_Elec', label: '📱 消费电子/果链/华为链' },
+  { value: 'Bio_Pharma', label: '💊 创新药/医疗器械' },
+  { value: 'Machines', label: '🦾 人形机器人/工业母机' },
+  { value: 'Internet_Plat', label: '🌐 互联网平台/中概互联' },
+  { value: 'Real_Estate', label: '🏠 房地产/基建/顺周期' },
+];
+
+export const SCREENER_STYLES = [
+  { 
+    value: 'GARP_Strategy', 
+    label: '🦄 GARP策略 (低估值+高成长)',
+    desc: '寻找 PEG < 1 且业绩增速 > 20% 的优质标的' 
+  },
+  { 
+    value: 'High_Dividend_Low_Vol', 
+    label: '💰 红利低波 (高股息+防守)',
+    desc: '股息率 > 4%，现金流充沛，防御属性强' 
+  },
+  { 
+    value: 'Smart_Money_Inflow', 
+    label: '🏦 主力抢筹 (北向/机构加仓)',
+    desc: '近期主力资金净流入，机构调研频繁'
+  },
+  { 
+    value: 'Turnaround_Reversal', 
+    label: '🔄 困境反转 (业绩/价格拐点)',
+    desc: '业绩预告扭亏，或股价底部放量突破' 
+  },
+  { 
+    value: 'Technical_Breakout', 
+    label: '📈 右侧突破 (量价齐升)',
+    desc: '突破关键均线(MA60/MA120)或箱体上沿' 
+  },
+  { 
+    value: 'Undervalued_Bluechip', 
+    label: '💎 核心资产抄底 (超跌白马)',
+    desc: '行业龙头，PE处于历史低位，被错杀' 
+  }
 ];
 
 export const ANALYSIS_LEVELS = [
